@@ -13,4 +13,4 @@ authRouter.post('/google/callback', googleCallbackHandler);
 authRouter.get('/me', requireAuth, getMeHandler);
 authRouter.post('/ensure-profile', requireAuth, asegurarPerfilHandler);
 authRouter.post('/refresh', refrescarTokenHandler);
-authRouter.post('/logout', requireAuth, (_req, res) => res.json({ message: 'Logged out' }));
+authRouter.post('/logout', (_req, res) => res.json({ message: 'Logged out' }));
