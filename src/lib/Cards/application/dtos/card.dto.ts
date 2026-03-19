@@ -22,8 +22,8 @@ export const SettingsDtoSchema = z.object({
 
 export const CreateCardDtoSchema = z.object({
   name: z.string().min(1).max(100),
-  type: z.enum(['personal','business','portfolio','restaurant','medical','academic','event','product','blank','gamer','fitness','creator','access']).default('personal'),
-  status: z.enum(['active','draft','archived']).default('draft'),
+  type: z.enum(['personal', 'business', 'portfolio', 'restaurant', 'medical', 'academic', 'event', 'product', 'blank', 'gamer', 'fitness', 'creator', 'access']).default('personal'),
+  status: z.enum(['active', 'draft', 'archived']).default('draft'),
   theme: z.string().default('dark-nexus'),
   blocks: z.array(BlockDtoSchema).default([]),
   settings: SettingsDtoSchema,
@@ -33,6 +33,7 @@ export const CreateCardDtoSchema = z.object({
   company: z.string().nullable().optional(),
   bio: z.string().nullable().optional(),
   avatar_emoji: z.string().nullable().optional(),
+  avatar_url: z.string().nullable().optional(),
   phone: z.string().nullable().optional(),
   email: z.string().nullable().optional(),
   website: z.string().nullable().optional(),
