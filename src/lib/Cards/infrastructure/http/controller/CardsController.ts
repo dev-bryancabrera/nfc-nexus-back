@@ -42,9 +42,11 @@ export const crearCardHandler = async (req: AuthRequest, res: Response): Promise
 export const actualizarCardHandler = async (req: AuthRequest, res: Response): Promise<void> => {
   const parse = CreateCardDtoSchema.partial().safeParse(req.body);
   if (!parse.success) { res.status(400).json({ error: parse.error.flatten() }); return; }
-  const card = await actualizarCard.execute(req.params.id, req.user!.id, parse.data);
-  if (!card) { res.status(404).json({ error: 'Card not found' }); return; }
-  res.json({ card });
+  try {
+    const card = await actualizarCard.execute(req.params.id, req.user!.id, parse.data);
+    if (!card) { res.status(404).json({ error: 'Card not found' }); return; }
+    res.json({ card });
+  } catch (e: unknown) { res.status(500).json({ error: (e as Error).message }); }
 };
 
 export const eliminarCardHandler = async (req: AuthRequest, res: Response): Promise<void> => {

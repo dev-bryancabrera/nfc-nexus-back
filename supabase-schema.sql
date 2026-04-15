@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS public.cards (
     "font_style": "outfit"
   }'::jsonb,
   cover_gradient  TEXT DEFAULT 'linear-gradient(135deg,#6366f1,#06ffa5)',
+  cover_image_url TEXT,
   full_name       TEXT,
   role            TEXT,
   company         TEXT,

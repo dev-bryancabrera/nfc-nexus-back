@@ -35,7 +35,7 @@ export class CardRepositorySupabase implements ICardRepository {
       .update({ ...data, updated_at: new Date().toISOString() })
       .eq('id', id).eq('user_id', userId)
       .select().single();
-    if (error) return null;
+    if (error) { console.error('update card error:', error.message); throw new Error(error.message); }
     return updated as CardProps;
   }
 
