@@ -76,6 +76,7 @@ export interface CardProps {
   blocks: CardBlock[];
   settings: CardSettings;
   cover_gradient: string;
+  cover_image_url: string | null;
   full_name: string | null;
   role: string | null;
   company: string | null;

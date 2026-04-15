@@ -36,6 +36,7 @@ export const CreateCardDtoSchema = z.object({
   blocks: z.array(BlockDtoSchema).default([]),
   settings: SettingsDtoSchema,
   cover_gradient: z.string().default('linear-gradient(135deg,#6366f1,#06ffa5)'),
+  cover_image_url: z.string().nullable().optional(),
   full_name: z.string().nullable().optional(),
   role: z.string().nullable().optional(),
   company: z.string().nullable().optional(),
