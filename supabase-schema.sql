@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS public.cards (
     "save_contact_btn": true,
     "analytics_enabled": true,
     "whatsapp_button": true,
+    "whatsapp_message": null,
     "auto_dark_mode": true,
     "animations": true,
     "seo_enabled": true,
@@ -47,7 +48,10 @@ CREATE TABLE IF NOT EXISTS public.cards (
     "show_emergency_banner": false,
     "realtime_enabled": false,
     "show_online_status": false,
-    "require_check_in": false
+    "require_check_in": false,
+    "card_style": "dark",
+    "profile_layout": "standard",
+    "font_style": "outfit"
   }'::jsonb,
   cover_gradient  TEXT DEFAULT 'linear-gradient(135deg,#6366f1,#06ffa5)',
   full_name       TEXT,
@@ -166,6 +170,18 @@ CREATE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE FUNCTION handle_new_user();
 
+-- ─── avatar_url column (if not exists) ───────────────────
+ALTER TABLE public.cards ADD COLUMN IF NOT EXISTS avatar_url TEXT;
+
 -- ─── Realtime: enable for cards table ────────────────────
 -- Permite suscripciones Supabase Realtime (opcional, para WS en el futuro)
 ALTER PUBLICATION supabase_realtime ADD TABLE public.cards;
+
+-- ─── Migration: add new visual settings to existing cards ─
+-- Ejecutar una vez para rellenar campos nuevos en cards existentes:
+/*
+UPDATE public.cards
+SET settings = settings
+  || '{"card_style":"dark","profile_layout":"standard","font_style":"outfit"}'::jsonb
+WHERE settings->>'card_style' IS NULL;
+*/

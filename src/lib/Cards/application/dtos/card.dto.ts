@@ -12,12 +12,20 @@ export const SettingsDtoSchema = z.object({
   save_contact_btn: z.boolean().default(true),
   analytics_enabled: z.boolean().default(true),
   whatsapp_button: z.boolean().default(true),
+  whatsapp_message: z.string().optional(),
   auto_dark_mode: z.boolean().default(true),
   animations: z.boolean().default(true),
   seo_enabled: z.boolean().default(true),
   password_protected: z.boolean().default(false),
   show_emergency_banner: z.boolean().default(false),
   realtime_enabled: z.boolean().default(false),
+  theme_color: z.string().optional(),
+  access_password: z.string().optional(),
+  card_style: z.enum(['dark', 'glass', 'neon', 'gradient', 'light', 'aurora']).default('dark'),
+  profile_layout: z.enum(['standard', 'centered', 'banner', 'minimal']).default('standard'),
+  font_style: z.enum(['outfit', 'syne', 'inter', 'playfair', 'mono']).default('outfit'),
+  show_online_status: z.boolean().default(false),
+  require_check_in: z.boolean().default(false),
 }).default({});
 
 export const CreateCardDtoSchema = z.object({

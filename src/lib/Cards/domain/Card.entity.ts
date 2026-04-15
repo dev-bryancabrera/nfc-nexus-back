@@ -35,12 +35,20 @@ export interface CardSettings {
   save_contact_btn: boolean;
   analytics_enabled: boolean;
   whatsapp_button: boolean;
+  whatsapp_message?: string;
   auto_dark_mode: boolean;
   animations: boolean;
   seo_enabled: boolean;
   password_protected: boolean;
   show_emergency_banner: boolean;
   realtime_enabled: boolean;
+  theme_color?: string;
+  access_password?: string;
+  card_style?: string;     // dark | glass | neon | gradient | light | aurora
+  profile_layout?: string; // standard | centered | banner | minimal
+  font_style?: string;     // outfit | syne | inter | playfair | mono
+  show_online_status: boolean;
+  require_check_in: boolean;
 }
 
 export const defaultSettings: CardSettings = {
@@ -53,6 +61,8 @@ export const defaultSettings: CardSettings = {
   password_protected: false,
   show_emergency_banner: false,
   realtime_enabled: false,
+  show_online_status: false,
+  require_check_in: false,
 };
 
 export interface CardProps {
