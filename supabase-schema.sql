@@ -174,6 +174,9 @@ CREATE TRIGGER on_auth_user_created
 -- ─── avatar_url column (if not exists) ───────────────────
 ALTER TABLE public.cards ADD COLUMN IF NOT EXISTS avatar_url TEXT;
 
+-- ─── cover_image_url column (if not exists) ──────────────
+ALTER TABLE public.cards ADD COLUMN IF NOT EXISTS cover_image_url TEXT;
+
 -- ─── Realtime: enable for cards table ────────────────────
 -- Permite suscripciones Supabase Realtime (opcional, para WS en el futuro)
 ALTER PUBLICATION supabase_realtime ADD TABLE public.cards;
